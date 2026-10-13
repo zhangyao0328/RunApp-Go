@@ -1,0 +1,14 @@
+.env
+.env.local
+target/
+*.log
+*.db
+runpulse-server
+runpulse-server-linux
+runpulse-server-linux-amd64
+
+# IDE
+.idea/
+
+# 管理后台前端构建产物（由 frontend/admin-web 构建生成）
+src/main/resources/static/admin/

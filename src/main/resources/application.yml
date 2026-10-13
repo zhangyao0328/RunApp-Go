@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: runpulse-server
+  jackson:
+    # 与 Go encoding/json 行为一致：忽略未知字段
+    deserialization:
+      fail-on-unknown-properties: false
+  sql:
+    init:
+      # 启动时幂等执行 schema.sql（CREATE TABLE IF NOT EXISTS），不触碰已有业务数据
+      mode: always
+      encoding: UTF-8
+  servlet:
+    multipart:
+      # GPX/FIT 轨迹导入上限，与管理端前端校验一致
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  # 端口/监听地址由 RunpulseApplication 从 RUNPULSE_ADDR 解析为 defaultProperties；
+  # 显式 --server.port / SERVER_PORT 仍可覆盖，application.yml 不再写死端口。
+  shutdown: graceful
+
+logging:
+  level:
+    root: info
